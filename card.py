@@ -45,3 +45,30 @@ def get_card_number(hash: str, bins: list, last_numbs: str, core_number: int = m
                 return result
     logging.info("Card number not got")
     return 0
+
+
+def luhn_algorithm(card_number: str) -> bool:
+    """Checking the card number using the Luhn algorithm
+
+    Args:
+        card_number(srt): number of the card
+
+    Returns:
+        bool: is the card number real
+    """
+    nums = []
+    card = list(map(int, card_number))
+    last = card[15]
+    card.pop()
+    for num in card:
+        tmp = num * 2
+        if tmp > 9:
+            nums.append(tmp % 10 + tmp // 10)
+        else:
+            nums.append(tmp)
+    res = 0
+    for num in nums:
+        res += num
+    res = 10 - res % 10
+    logging.info("Check the card number using the Luhn algorithm")
+    return res == last
