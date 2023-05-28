@@ -37,3 +37,27 @@ def write_stats(processes: int, time: float, file_name: str) -> None:
     except OSError as err:
         logging.info("Stats writing is failed")
         raise err
+
+
+def load_stats(file_name: str) -> dict:
+    """Loads statistics from the file
+
+    Args:
+        file_name(str): name of the file
+
+    Returns:
+        dict: dict with statistics from the file
+    """
+    try:
+        with open(file_name, 'r') as f:
+            reader = csv.reader(f)
+            stats = list(reader)
+        logging.info("Stats successfully loaded")
+    except OSError as err:
+        logging.info("Loading stats is failed")
+        raise err
+    result = dict()
+    for i in stats:
+        processes, time = i
+        result[int(processes)] = float(time)
+    return result
