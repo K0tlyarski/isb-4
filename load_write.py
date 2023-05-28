@@ -37,21 +37,21 @@ def write_file(data: str, file_name: str) -> None:
         raise err
 
 
-    def load_settings(json_file: str) -> dict:
-        """Loads a settings file into the program.
+def load_settings(json_file: str) -> dict:
+    """Loads a settings file into the program.
 
-        Args:
-            json_file (str): The path to the json file with the settings.
+    Args:
+        json_file (str): The path to the json file with the settings.
 
-        Returns:
-            dict: dictionary with settings
-        """
-        settings = None
-        try:
-            with open(json_file) as json_file:
-                settings = json.load(json_file)
-            logging.info("Settings loaded successfully")
-        except OSError as err:
-            logging.info("Settings not loaded")
-            raise err
-        return settings
+    Returns:
+        dict: dictionary with settings
+    """
+    settings = None
+    try:
+        with open(json_file) as json_file:
+            settings = json.load(json_file)
+        logging.info("Settings loaded successfully")
+    except OSError as err:
+        logging.info("Settings not loaded")
+        raise err
+    return settings
