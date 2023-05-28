@@ -9,7 +9,7 @@ import stats
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO,
                         filename="prog_logs.log", filemode="w")
-    settings = load_write.load_settings("settings.json")
+    settings = load_write.load_settings("setting.json")
     parser = argparse.ArgumentParser()
     parser.add_argument("-card", "--get_card_numb", type=int,
                         help="Gets card number, input the number of processors")
