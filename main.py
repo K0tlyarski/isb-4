@@ -18,3 +18,39 @@ if __name__ == "__main__":
     parser.add_argument("-stat", "--statistics",
                         help="Gets stats about executing time with different number of processors")
     args = parser.parse_args()
+    if args.get_card_numb:
+        try:
+            hash = settings["hash"]
+            bins = settings["bins"]
+            last_numbers = settings["last_numbers"]
+            card_number = get_card_number(
+                hash, bins, last_numbers, args.get_card_numb)
+            if card_number:
+                load_write.write_file(
+                    str(card_number), settings["card_number"])
+                logging.info("Card number found")
+            else:
+                logging.info("Card number not found")
+        except BaseException as err:
+            logging.info(f"Something went wrong: {err}")
+    elif args.luhn_algorithm:
+        card_number = load_write.read_file(settings["card_number"])
+        if luhn_algorithm(card_number):
+            logging.info("Card number is right")
+        else:
+            logging.info("Card number is wrong")
+    elif args.statistics:
+        try:
+            hash = settings["hash"]
+            bins = settings["bins"]
+            last_four_numbers = settings["last_numbers"]
+            for i in range(1, 9):
+                t1 = time.time()
+                get_card_number(hash, bins, last_four_numbers, i)
+                t2 = time.time()
+                stats.write_stats(i, t2 - t1, settings["stats"])
+            stats.create_stats(stats.load_stats(
+                settings["stats"]), settings["graph"])
+            logging.info("Stats got and saved successfully")
+        except BaseException:
+            logging.info("Something went wrong")
