@@ -53,4 +53,4 @@ if __name__ == "__main__":
                 settings["stats"]), settings["graph"])
             logging.info("Stats got and saved successfully")
         except BaseException:
-            logging.info("Something went wrong")
+            logging.error("Something went wrong")
