@@ -16,7 +16,7 @@ def read_file(file_name: str) -> str:
             data = f.read()
         logging.info("Read the data successfully")
     except OSError as err:
-        logging.info("Read the data is failed")
+        logging.error("Read the data is failed")
         raise err
     return data
 
@@ -33,7 +33,7 @@ def write_file(data: str, file_name: str) -> None:
             f.write(data)
         logging.info("Write the data successfully")
     except OSError as err:
-        logging.info("Write the data is failed")
+        logging.error("Write the data is failed")
         raise err
 
 
@@ -52,6 +52,6 @@ def load_settings(json_file: str) -> dict:
             settings = json.load(json_file)
         logging.info("Settings loaded successfully")
     except OSError as err:
-        logging.info("Settings not loaded")
+        logging.error("Settings not loaded")
         raise err
     return settings

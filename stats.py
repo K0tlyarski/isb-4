@@ -35,7 +35,7 @@ def write_stats(processes: int, time: float, file_name: str) -> None:
             writer.writerow([processes, time])
         logging.info("Stats successfully written")
     except OSError as err:
-        logging.info("Stats writing is failed")
+        logging.warning("Stats writing is failed")
         raise err
 
 
@@ -54,7 +54,7 @@ def load_stats(file_name: str) -> dict:
             stats = list(reader)
         logging.info("Stats successfully loaded")
     except OSError as err:
-        logging.info("Loading stats is failed")
+        logging.error("Loading stats is failed")
         raise err
     result = dict()
     for i in stats:
