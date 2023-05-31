@@ -31,7 +31,7 @@ if __name__ == "__main__":
                 logging.info("Card number found")
             else:
                 logging.info("Card number not found")
-        except BaseException as err:
+        except Exception as err:
             logging.info(f"Something went wrong: {err}")
     elif args.luhn_algorithm:
         card_number = load_write.read_file(settings["card_number"])
