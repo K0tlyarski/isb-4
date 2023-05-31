@@ -52,5 +52,5 @@ if __name__ == "__main__":
             stats.create_stats(stats.load_stats(
                 settings["stats"]), settings["graph"])
             logging.info("Stats got and saved successfully")
-        except BaseException:
+        except Exception:
             logging.error("Something went wrong")
